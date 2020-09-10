@@ -1,4 +1,4 @@
-public class exercise_1
+public class character_assaination
 {
     public static void main (String[] args)
     {
@@ -8,4 +8,3 @@ public class exercise_1
 
 
 }
-
