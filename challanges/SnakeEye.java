@@ -10,42 +10,35 @@ public class SnakeEye
         System.out.println("How many times do you want to simulate the game: ");
         int repeats = scanner.nextInt();
         int counts = 0;
-        int max = 5;
-        int avgroll = 0;
-        int avgscore = 0;
-        double percentfour = 0;
         int turnroll = 0;
         int turnscore = 0;
         int fourscore = 0;
-        int turns = 0;
-
+        
         while (repeats >= counts) {
             boolean endroll = false;
             int singleturnroll = 0;
             //game
-            while (endroll == false) {
+            while (!endroll) {//this loop is one turn or simulation for the game
+                int max = 5;
                 int roll = (randomGenerator.nextInt(max)) + (randomGenerator.nextInt(max)); 
-                turnscore = turnscore + 2 + roll;
-                turnroll = turnroll + 1;
-                singleturnroll = singleturnroll + 1;
-                System.out.println(singleturnroll);
-
-                if (roll == 0) {
-                    if (singleturnroll > 4) {
+                turnscore = turnscore + 2 + roll; //the +2 is to acount for randoms 0-5 count
+                turnroll = turnroll + 1; //counting all the rolls
+                singleturnroll = singleturnroll + 1; //counting the rolls within 1 turn
+                
+                if (roll == 0) { //0 is snake eyes
+                    if (singleturnroll > 4) { //used to check if there were more then 4 roll in this turn
                         fourscore = fourscore + 1;
                     }
-                    turns = turns + 1;
                     singleturnroll = 0;
-                    endroll = true;
+                    endroll = true; //ends the while loop for a turn
                 }
             }            
-            System.out.println(counts);
             counts = counts + 1;
         }
-        avgscore = turnscore / repeats;
-        avgroll = turnroll / repeats;
-        percentfour = ((fourscore + 0.0) / (turns + 0.0)) * 100;
+        int avgscore = turnscore / repeats;
+        int avgroll = turnroll / repeats;
+        double percentfour = ((fourscore + 0.0) / (repeats + 0.0)) * 100;
 
-        System.out.println("The Average score over " + repeats + " simulations is: " + avgscore + "\n The average rolls was: " + avgroll + "\nThe percentage of over 4 rolls was: " + percentfour + "%");
+        System.out.println("In " + repeats + " simulations the average score is: " + avgscore + "\n The average rolls was: " + avgroll + "\nThe percentage of over 4 rolls was: " + percentfour + "%");
     }
 }
