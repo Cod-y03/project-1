@@ -28,6 +28,18 @@ public class Color
 
 
     //setters and getters
+    public void setRed(int red) {
+        this.red = red;
+        checkColor();
+    } 
+    public void setBlue(int blue) {
+        this.blue = blue;
+        checkColor();
+    } 
+    public void setGreen(int green) {
+        this.green = green;
+        checkColor();
+    } 
 
     public String getColor() {
         String rgb = "Color: " + this.red + ", " + this.green + ", " + this.blue;
@@ -62,11 +74,10 @@ public class Color
         }
     }
 
-    public void lighten(double percent) {
-        int raise = (255 * (percent / 100));
+    public void lighten(int percent) {
+        int raise = ((255 * percent) / 100);
 
         this.red = this.red + raise;
-       System.out.println(raise);
         this.green = this.green + raise;
        
         this.blue = this.blue + raise;
@@ -75,8 +86,8 @@ public class Color
     }
 
     public void darken(int percent) {
-        int lower = (255 * (percent / 100));
-
+        int  lower = ((255 * percent) / 100);
+        System.out.println(lower);
         this.red = this.red - lower;
       
         this.green = this.green - lower;
