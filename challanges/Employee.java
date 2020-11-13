@@ -1,5 +1,6 @@
 import java.util.Random;
 
+
 public class Employee
 {
     private String name = " ";
@@ -7,38 +8,52 @@ public class Employee
     private int id = 0;
     private double hours = 0;
     private double totalHours = 0;
-    
-    // public static int ids() {
-    //      Random randomGenerator = new Random();
-    //     int max = 999999;
-    //     int personalID = 100000 + randomGenerator.nextInt(max);
-    //    if () 
-    // }
 
+    private static int employeeCount = 0;
+    
     //Contructers
 
     public Employee(String name, double wage) {
         this.name = name;
         this.wage = wage;
+        employeeCount ++;
+        this.id = employeeCount;
 
         
     }
-    public Employee(String name, double wage, double totalHours) {
-        this.name = name;
-        this.wage = wage;
-        this.totalHours = totalHours;
+
+    public double getHours() {
+        return this.hours;
+    }
+    public double getTotalHours() {
+        return this.totalHours;
+    }
+    public int getID() {
+        return this.id;
     }
 
-    //abilitys
+    public double getWage() {
+        return this.wage;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 
     public void addHours(int addedHour) {
         this.hours = this.hours + addedHour;
         this.totalHours = this.totalHours + addedHour;
     }
 
-    public double requestPaycheck() {
-        return this.wage * this.hours - (this.wage * this.hours * .15);
+    //abilitys
+    public String toString() {
+        return this.name + " worked " + this.hours + " this week at a wage of " + this.wage + "and eraned ";
+    }
 
+    public Paycheck requestPaycheck() {
+        Paycheck paycheck = new Paycheck(this);
+        this.hours = 0;
+        return paycheck;
     }
 
 }
